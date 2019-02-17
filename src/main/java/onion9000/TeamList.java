@@ -115,7 +115,7 @@ public class TeamList {
 		}
 		return users; //return (count) players
 	}
-	public boolean checkUser(String user)
+	private boolean checkUser(String user)
 	{
 		for (ArrayList<String> team : teams)
 		{
@@ -126,7 +126,7 @@ public class TeamList {
 		}
 		return false; //user is not already signed up and can join roster
 	}
-	public boolean played(String user)
+	private boolean played(String user)
 	{
 		for (String player : played)
 		{
@@ -134,7 +134,7 @@ public class TeamList {
 		}
 		return false;
 	}
-	public boolean banned(String user)
+	private boolean banned(String user)
 	{
 		for (String player : banned)
 		{
@@ -151,12 +151,14 @@ public class TeamList {
 	 * TO ADD
 	 * 
 	 * PICKING
-	 * Check if users has perms to call pick()
-	 * If users don't play, add them back to teams???
+	 * Check if user has perms to call pick()
+	 * If users don't play, add them back to teams??? (or just keep them on played list)
 	 * 
 	 * SIGNUP
 	 * Open roster
 	 * Close roster
+	 * Check if user has perms to call open and close
+	 * Add some way to check if user actually wants to be on team???
 	 * 
 	 * 
 	 * BANS
@@ -166,9 +168,8 @@ public class TeamList {
 	 * Error messages
 	 * 		Party too Big
 	 * 		User already signed up
-	 * 		User banned
+	 * 		User banned (private message?)
 	 * 		User already played
 	 * 		Team/User can't be removed
-	 * 		
 	 */
 }
