@@ -13,9 +13,10 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		try {
-			Scanner tokenFile = new Scanner(new File ("token.txt"));
+			Scanner tokenFile = new Scanner(new File("token.txt"));
 			String token = tokenFile.nextLine();
 			tokenFile.close();
+			@SuppressWarnings("unused")
 			JDA jda = new JDABuilder()
 					.addEventListener(new MessageListener())
 					.setAudioEnabled(false)

@@ -1,15 +1,51 @@
 package onion9000.listeners;
 
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.Event;
+import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.EventListener;
+import onion9000.Logger;
 
 public class MessageListener implements EventListener{
 
 	public void onEvent(Event event) {
+		if (event instanceof ReadyEvent) {
+			Logger.logInfo("Ready to go!");
+		}
 		if (event instanceof GuildMessageReceivedEvent) {
-			if (!((GuildMessageReceivedEvent) event).getAuthor().isBot()) {
-				((GuildMessageReceivedEvent)event).getChannel().sendMessage("Fuck").queue();	
+			GuildMessageReceivedEvent msgEvent = (GuildMessageReceivedEvent) event;
+			if (!msgEvent.getAuthor().isBot()) {
+				if (msgEvent.getMessage().getContentRaw().startsWith("!")) {/*This is the prefix to use. would also recommend having this read from a file*/
+					Message msg = msgEvent.getMessage();
+					if (msg.getContentRaw().substring(1).startsWith("ping")) {
+						msgEvent.getChannel().sendMessage("Pong! ("+msgEvent.getJDA().getPing()+"ms)").queue(m -> Logger.logInfo("Pong!"));;
+					} else if (msg.getContentRaw().substring(1).startsWith("addme")) {
+						//Do stuff here
+						
+					} else if (msg.getContentRaw().substring(1).startsWith("addteam")) {
+						//Do stuff here
+						
+					} else if (msg.getContentRaw().substring(1).startsWith("removeme")) {
+						//Do stuff here
+						
+					} else if (msg.getContentRaw().substring(1).startsWith("removeteam")) {
+						//Do stuff here
+						
+					} else if (msg.getContentRaw().substring(1).startsWith("pick")) {
+						//Do stuff here
+						
+					} else if (msg.getContentRaw().substring(1).startsWith("open")) {
+						//Do stuff here
+						
+					} else if (msg.getContentRaw().substring(1).startsWith("close")) {
+						//Do stuff here
+						
+					} else if (msg.getContentRaw().substring(1).startsWith("help")) {
+						//Do stuff here
+						
+					}
+				}
 			}
 		}
 		/*
@@ -44,15 +80,14 @@ public class MessageListener implements EventListener{
  * 		Delete user's message upon successful signup
  * !addteam - send arraylist of all users to addTeam()
  * 		Delete user's message upon successful signup
- * !pick - call pick() and print
- * !pick (param) - call pick(param) and print
+ * !pick - call pick() and print - admin cmd
  * !removeme - call removeUser() 
  * 		Delete user's message upon successful removal
  * !removeteam - call removeTeam()
  * 		Delete user's message upon successful removal
- * !open - TeamList() and allow user commands
+ * !open - TeamList() and allow user commands - admin cmd 
  * 		Response
- * !close - Disallow user commands
+ * !close - Disallow user commands - admin cmd
  * 		Response
  * !help - DM
  */

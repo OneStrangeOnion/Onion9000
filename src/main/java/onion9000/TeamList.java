@@ -144,6 +144,7 @@ public class TeamList {
 	}
 	public void addBan(String user)
 	{
+		@SuppressWarnings("unused")
 		File banFile = new File("ban.txt");
 		//append user to "bans.txt"
 	}
